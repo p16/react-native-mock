@@ -1,19 +1,13 @@
-"use strict";
-
 /**
  * https://github.com/facebook/react-native/blob/master/React/Modules/RCTTiming.m
  */
-var Timing = {
-  createTimer: function () {
-    function createTimer(callbackId, duration, jsSchedulingTime, repeats) {}
+var Timing={
+createTimer:function(){function createTimer(callbackId,duration,jsSchedulingTime,repeats){}return createTimer;}(),
 
-    return createTimer;
-  }(),
-  deleteTimer: function () {
-    function deleteTimer(timerId) {}
 
-    return deleteTimer;
-  }()
-};
+deleteTimer:function(){function deleteTimer(timerId){}return deleteTimer;}()};
 
-module.exports = Timing;
+
+
+
+module.exports=Timing;

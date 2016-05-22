@@ -1,36 +1,26 @@
-'use strict';
+var 
+WebViewManager={
+goBack:function(){function goBack(reactTag){}return goBack;}(),
 
-var WebViewManager = {
-  goBack: function () {
-    function goBack(reactTag) {}
 
-    return goBack;
-  }(),
-  goForward: function () {
-    function goForward(reactTag) {}
+goForward:function(){function goForward(reactTag){}return goForward;}(),
 
-    return goForward;
-  }(),
-  reload: function () {
-    function reload(reactTag) {}
 
-    return reload;
-  }(),
-  startLoadWithResult: function () {
-    function startLoadWithResult(result, lockIdentifier) {}
+reload:function(){function reload(reactTag){}return reload;}(),
 
-    return startLoadWithResult;
-  }(),
 
-  JSNavigationScheme: 'react-js-navigation',
-  NavigationType: {
-    LinkClicked: 0,
-    FormSubmitted: 1,
-    BackForward: 2,
-    Reload: 3,
-    FormResubmitted: 4,
-    Other: 5
-  }
-};
+startLoadWithResult:function(){function startLoadWithResult(result,lockIdentifier){}return startLoadWithResult;}(),
 
-module.exports = WebViewManager;
+
+JSNavigationScheme:'react-js-navigation',
+NavigationType:{
+LinkClicked:0,
+FormSubmitted:1,
+BackForward:2,
+Reload:3,
+FormResubmitted:4,
+Other:5}};
+
+
+
+module.exports=WebViewManager;

@@ -1,49 +1,28 @@
-'use strict';
+var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};
+var _ImagePickerIOS=require('../NativeModules/ImagePickerIOS');var _ImagePickerIOS2=_interopRequireDefault(_ImagePickerIOS);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{'default':obj};}
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var ImagePickerIOS={
+canRecordVideos:function(){function canRecordVideos(callback){
+return _ImagePickerIOS2['default'].canRecordVideos(callback);}return canRecordVideos;}(),
 
-var _ImagePickerIOS = require('../NativeModules/ImagePickerIOS');
+canUseCamera:function(){function canUseCamera(callback){
+return _ImagePickerIOS2['default'].canUseCamera(callback);}return canUseCamera;}(),
 
-var _ImagePickerIOS2 = _interopRequireDefault(_ImagePickerIOS);
+openCameraDialog:function(){function openCameraDialog(config,successCallback,cancelCallback){
+var newConfig=_extends({
+videoMode:false},
+config);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+return _ImagePickerIOS2['default'].openCameraDialog(newConfig,successCallback,cancelCallback);}return openCameraDialog;}(),
 
-var ImagePickerIOS = {
-  canRecordVideos: function () {
-    function canRecordVideos(callback) {
-      return _ImagePickerIOS2['default'].canRecordVideos(callback);
-    }
+openSelectDialog:function(){function openSelectDialog(config,successCallback,cancelCallback){
+var newConfig=_extends({
+showImages:true,
+showVideos:false},
+config);
 
-    return canRecordVideos;
-  }(),
-  canUseCamera: function () {
-    function canUseCamera(callback) {
-      return _ImagePickerIOS2['default'].canUseCamera(callback);
-    }
+return _ImagePickerIOS2['default'].openSelectDialog(newConfig,successCallback,cancelCallback);}return openSelectDialog;}()};
 
-    return canUseCamera;
-  }(),
-  openCameraDialog: function () {
-    function openCameraDialog(config, successCallback, cancelCallback) {
-      config = _extends({
-        videoMode: false
-      }, config);
-      return _ImagePickerIOS2['default'].openCameraDialog(config, successCallback, cancelCallback);
-    }
 
-    return openCameraDialog;
-  }(),
-  openSelectDialog: function () {
-    function openSelectDialog(config, successCallback, cancelCallback) {
-      config = _extends({
-        showImages: true,
-        showVideos: false
-      }, config);
-      return _ImagePickerIOS2['default'].openSelectDialog(config, successCallback, cancelCallback);
-    }
 
-    return openSelectDialog;
-  }()
-};
-
-module.exports = ImagePickerIOS;
+module.exports=ImagePickerIOS;

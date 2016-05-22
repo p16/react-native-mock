@@ -1,43 +1,23 @@
-"use strict";
-
 /**
  * https://github.com/facebook/react-native/blob/master/Libraries/Utilities/PixelRatio.js
  */
-var PixelRatio = {
-  get: function () {
-    function get() {
-      return 2;
-    }
+var PixelRatio={
+get:function(){function get(){
+return 2;}return get;}(),
 
-    return get;
-  }(),
-  getFontScale: function () {
-    function getFontScale() {
-      return 2;
-    }
+getFontScale:function(){function getFontScale(){
+return 2;}return getFontScale;}(),
 
-    return getFontScale;
-  }(),
-  getPixelSizeForLayoutSize: function () {
-    function getPixelSizeForLayoutSize(layoutSize) {
-      return Math.round(layoutSize * PixelRatio.get());
-    }
+getPixelSizeForLayoutSize:function(){function getPixelSizeForLayoutSize(layoutSize){
+return Math.round(layoutSize*PixelRatio.get());}return getPixelSizeForLayoutSize;}(),
 
-    return getPixelSizeForLayoutSize;
-  }(),
-  roundToNearestPixel: function () {
-    function roundToNearestPixel(layoutSize) {
-      var ratio = PixelRatio.get();
-      return Math.round(layoutSize * ratio) / ratio;
-    }
+roundToNearestPixel:function(){function roundToNearestPixel(layoutSize){
+var ratio=PixelRatio.get();
+return Math.round(layoutSize*ratio)/ratio;}return roundToNearestPixel;}(),
 
-    return roundToNearestPixel;
-  }(),
-  startDetecting: function () {
-    function startDetecting() {}
+startDetecting:function(){function startDetecting(){}return startDetecting;}()};
 
-    return startDetecting;
-  }()
-};
 
-module.exports = PixelRatio;
+
+
+module.exports=PixelRatio;

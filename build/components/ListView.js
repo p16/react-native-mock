@@ -1,64 +1,19 @@
-'use strict';
+var _jsxFileName='src/components/ListView.js';var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _react=require('react');var _react2=_interopRequireDefault(_react);
+var _ScrollResponder=require('../mixins/ScrollResponder');var _ScrollResponder2=_interopRequireDefault(_ScrollResponder);
+var _reactTimerMixin=require('react-timer-mixin');var _reactTimerMixin2=_interopRequireDefault(_reactTimerMixin);
+var _ScrollView=require('./ScrollView');var _ScrollView2=_interopRequireDefault(_ScrollView);
+var _ListViewDataSource=require('../api/ListViewDataSource');var _ListViewDataSource2=_interopRequireDefault(_ListViewDataSource);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{'default':obj};}var 
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ScrollResponder = require('../mixins/ScrollResponder');
-
-var _ScrollResponder2 = _interopRequireDefault(_ScrollResponder);
-
-var _reactTimerMixin = require('react-timer-mixin');
-
-var _reactTimerMixin2 = _interopRequireDefault(_reactTimerMixin);
-
-var _ScrollViewManager = require('../NativeModules/ScrollViewManager');
-
-var _ScrollViewManager2 = _interopRequireDefault(_ScrollViewManager);
-
-var _ScrollView = require('./ScrollView');
-
-var _ScrollView2 = _interopRequireDefault(_ScrollView);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var ListViewDataSource = require('../api/ListViewDataSource');
-//var React = require('React');
-
-//var ScrollView = require('ScrollView');
-//var ScrollResponder = require('ScrollResponder');
-// var StaticRenderer = require('StaticRenderer');  // Unused
-//var TimerMixin = require('react-timer-mixin');
-
-// var isEmpty = require('isEmpty'); // Doesnt resolve
-// var logError = require('logError'); // Doesnt resolve
-//var merge = require('merge');
-
-var PropTypes = _react2['default'].PropTypes;
+PropTypes=_react2['default'].PropTypes;
+var SCROLLVIEW_REF='listviewscroll';
 
 
-var DEFAULT_PAGE_SIZE = 1;
-var DEFAULT_INITIAL_ROWS = 10;
-var DEFAULT_SCROLL_RENDER_AHEAD = 1000;
-var DEFAULT_END_REACHED_THRESHOLD = 1000;
-var DEFAULT_SCROLL_CALLBACK_THROTTLE = 50;
-var SCROLLVIEW_REF = 'listviewscroll';
+var ListView=_react2['default'].createClass({displayName:'ListView',
+propTypes:_extends({},
+_ScrollView2['default'].propTypes,{
 
-var ListView = _react2['default'].createClass({
-  displayName: 'ListView',
-
-  mixins: [_ScrollResponder2['default'].Mixin, _reactTimerMixin2['default']],
-
-  statics: {
-    DataSource: ListViewDataSource
-  },
-
-  propTypes: _extends({}, _ScrollView2['default'].propTypes, {
-
-    dataSource: PropTypes.instanceOf(ListViewDataSource).isRequired,
-    /**
+dataSource:PropTypes.instanceOf(_ListViewDataSource2['default']).isRequired,
+/**
      * (sectionID, rowID, adjacentRowHighlighted) => renderable
      *
      * If provided, a renderable component to be rendered as the separator
@@ -66,8 +21,8 @@ var ListView = _react2['default'].createClass({
      * Take a sectionID and rowID of the row above and whether its adjacent row
      * is highlighted.
      */
-    renderSeparator: PropTypes.func,
-    /**
+renderSeparator:PropTypes.func,
+/**
      * (rowData, sectionID, rowID, highlightRow) => renderable
      *
      * Takes a data entry from the data source and its ids and should return
@@ -78,28 +33,28 @@ var ListView = _react2['default'].createClass({
      * below will be hidden when a row is highlighted. The highlighted state of
      * a row can be reset by calling highlightRow(null).
      */
-    renderRow: PropTypes.func.isRequired,
-    /**
+renderRow:PropTypes.func.isRequired,
+/**
      * How many rows to render on initial component mount.  Use this to make
      * it so that the first screen worth of data appears at one time instead of
      * over the course of multiple frames.
      */
-    initialListSize: PropTypes.number,
-    /**
+initialListSize:PropTypes.number,
+/**
      * Called when all rows have been rendered and the list has been scrolled
      * to within onEndReachedThreshold of the bottom.  The native scroll
      * event is provided.
      */
-    onEndReached: PropTypes.func,
-    /**
+onEndReached:PropTypes.func,
+/**
      * Threshold in pixels for onEndReached.
      */
-    onEndReachedThreshold: PropTypes.number,
-    /**
+onEndReachedThreshold:PropTypes.number,
+/**
      * Number of rows to render per event loop.
      */
-    pageSize: PropTypes.number,
-    /**
+pageSize:PropTypes.number,
+/**
      * () => renderable
      *
      * The header and footer are always rendered (if these props are provided)
@@ -107,9 +62,9 @@ var ListView = _react2['default'].createClass({
      * in StaticContainer or other mechanism as appropriate.  Footer is always
      * at the bottom of the list, and header at the top, on every render pass.
      */
-    renderFooter: PropTypes.func,
-    renderHeader: PropTypes.func,
-    /**
+renderFooter:PropTypes.func,
+renderHeader:PropTypes.func,
+/**
      * (sectionData, sectionID) => renderable
      *
      * If provided, a sticky header is rendered for this section.  The sticky
@@ -118,20 +73,20 @@ var ListView = _react2['default'].createClass({
      * stick to the top until it is pushed off the screen by the next section
      * header.
      */
-    renderSectionHeader: PropTypes.func,
-    /**
+renderSectionHeader:PropTypes.func,
+/**
      * (props) => renderable
      *
      * A function that returns the scrollable component in which the list rows
      * are rendered. Defaults to returning a ScrollView with the given props.
      */
-    renderScrollComponent: _react2['default'].PropTypes.func.isRequired,
-    /**
+renderScrollComponent:_react2['default'].PropTypes.func.isRequired,
+/**
      * How early to start rendering rows before they come on screen, in
      * pixels.
      */
-    scrollRenderAheadDistance: _react2['default'].PropTypes.number,
-    /**
+scrollRenderAheadDistance:_react2['default'].PropTypes.number,
+/**
      * (visibleRows, changedRows) => void
      *
      * Called when the set of visible rows changes.  `visibleRows` maps
@@ -140,14 +95,14 @@ var ListView = _react2['default'].createClass({
      * that have changed their visibility, with true indicating visible, and
      * false indicating the view has moved out of view.
      */
-    onChangeVisibleRows: _react2['default'].PropTypes.func,
-    /**
+onChangeVisibleRows:_react2['default'].PropTypes.func,
+/**
      * A performance optimization for improving scroll perf of
      * large lists, used in conjunction with overflow: 'hidden' on the row
      * containers.  This is enabled by default.
      */
-    removeClippedSubviews: _react2['default'].PropTypes.bool,
-    /**
+removeClippedSubviews:_react2['default'].PropTypes.bool,
+/**
      * An array of child indices determining which children get docked to the
      * top of the screen when scrolling. For example, passing
      * `stickyHeaderIndices={[0]}` will cause the first child to be fixed to the
@@ -155,65 +110,58 @@ var ListView = _react2['default'].createClass({
      * with `horizontal={true}`.
      * @platform ios
      */
-    stickyHeaderIndices: PropTypes.arrayOf(PropTypes.number)
-  }),
+stickyHeaderIndices:PropTypes.arrayOf(PropTypes.number)}),
 
-  /**
+mixins:[_ScrollResponder2['default'].Mixin,_reactTimerMixin2['default']],
+
+statics:{
+DataSource:_ListViewDataSource2['default']},
+
+
+/**
    * Exports some data, e.g. for perf investigations or analytics.
    */
-  getMetrics: function () {
-    function getMetrics() {
-      return {
-        contentLength: this.scrollProperties.contentLength,
-        totalRows: this.props.dataSource.getRowCount(),
-        renderedRows: this.state.curRenderedRowsCount,
-        visibleRows: Object.keys(this._visibleRows).length
-      };
-    }
-
-    return getMetrics;
-  }(),
+getMetrics:function(){function getMetrics(){ // eslint-disable-line react/sort-comp
+// It's fixed, but the linter doesnt want to recognise it...
+return {
+contentLength:this.scrollProperties.contentLength,
+totalRows:this.props.dataSource.getRowCount(),
+renderedRows:this.state.curRenderedRowsCount,
+visibleRows:Object.keys(this._visibleRows).length};}return getMetrics;}(),
 
 
-  /**
+
+scrollTo:function(){function scrollTo(destY,destX){
+this.getScrollResponder().scrollResponderScrollTo(destX||0,destY||0);}return scrollTo;}(),
+
+
+/**
    * Provides a handle to the underlying scroll responder to support operations
    * such as scrollTo.
    */
-  getScrollResponder: function () {
-    function getScrollResponder() {
-      return this.refs[SCROLLVIEW_REF] && this.refs[SCROLLVIEW_REF].getScrollResponder && this.refs[SCROLLVIEW_REF].getScrollResponder();
-    }
+getScrollResponder:function(){function getScrollResponder(){
+return this.refs[SCROLLVIEW_REF]&&
+this.refs[SCROLLVIEW_REF].getScrollResponder&&
+this.refs[SCROLLVIEW_REF].getScrollResponder();}return getScrollResponder;}(),
 
-    return getScrollResponder;
-  }(),
-  scrollTo: function () {
-    function scrollTo(destY, destX) {
-      this.getScrollResponder().scrollResponderScrollTo(destX || 0, destY || 0);
-    }
 
-    return scrollTo;
-  }(),
-  setNativeProps: function () {
-    function setNativeProps(props) {
-      this.refs[SCROLLVIEW_REF].setNativeProps(props);
-    }
+setNativeProps:function(){function setNativeProps(props){
+this.refs[SCROLLVIEW_REF].setNativeProps(props);}return setNativeProps;}(),
 
-    return setNativeProps;
-  }(),
-  getInnerViewNode: function () {
-    function getInnerViewNode() {
-      return this.refs[SCROLLVIEW_REF].getInnerViewNode();
-    }
 
-    return getInnerViewNode;
-  }(),
-  render: function () {
-    function render() {
-      return null;
-    }
+getDefaultProps:function(){function getDefaultProps(){
+return {
+renderScrollComponent:function(){function renderScrollComponent(props){return _react2['default'].createElement(_ScrollView2['default'],_extends({},props,{__source:{fileName:_jsxFileName,lineNumber:154}}));}return renderScrollComponent;}()};}return getDefaultProps;}(),
 
-    return render;
-  }()
-});
 
-module.exports = ListView;
+
+getInnerViewNode:function(){function getInnerViewNode(){
+return this.refs[SCROLLVIEW_REF].getInnerViewNode();}return getInnerViewNode;}(),
+
+
+render:function(){function render(){
+return null;}return render;}()});
+
+
+
+module.exports=ListView;

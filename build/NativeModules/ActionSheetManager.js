@@ -1,16 +1,11 @@
-"use strict";
+var 
+ActionSheetManager={
+showActionSheetWithOptions:function(){function showActionSheetWithOptions(options,callback){}return showActionSheetWithOptions;}(),
 
-var ActionSheetManager = {
-  showActionSheetWithOptions: function () {
-    function showActionSheetWithOptions(options, callback) {}
 
-    return showActionSheetWithOptions;
-  }(),
-  showShareActionSheetWithOptions: function () {
-    function showShareActionSheetWithOptions(options, failure, success) {}
+showShareActionSheetWithOptions:function(){function showShareActionSheetWithOptions(options,failure,success){}return showShareActionSheetWithOptions;}()};
 
-    return showShareActionSheetWithOptions;
-  }()
-};
 
-module.exports = ActionSheetManager;
+
+
+module.exports=ActionSheetManager;

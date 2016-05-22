@@ -1,96 +1,66 @@
-"use strict";
+var 
+UIManager={
+removeSubviewsFromContainerWithID:function(){function removeSubviewsFromContainerWithID(containerId){}return removeSubviewsFromContainerWithID;}(),
 
-var UIManager = {
-  removeSubviewsFromContainerWithID: function () {
-    function removeSubviewsFromContainerWithID(containerId) {}
 
-    return removeSubviewsFromContainerWithID;
-  }(),
-  removeRootView: function () {
-    function removeRootView(rootReactTag) {}
+removeRootView:function(){function removeRootView(rootReactTag){}return removeRootView;}(),
 
-    return removeRootView;
-  }(),
-  replaceExistingNonRootView: function () {
-    function replaceExistingNonRootView(reactTag, newReactTag) {}
 
-    return replaceExistingNonRootView;
-  }(),
-  setChildren: function () {
-    function setChildren(containerTag, reactTags) {}
+replaceExistingNonRootView:function(){function replaceExistingNonRootView(reactTag,newReactTag){}return replaceExistingNonRootView;}(),
 
-    return setChildren;
-  }(),
-  manageChildren: function () {
-    function manageChildren(containerReactTag, moveFromIndices, moveToIndices, addChildReactTags, addAtIndices, removeAtIndices) {}
 
-    return manageChildren;
-  }(),
-  createView: function () {
-    function createView(reactTag, viewName, rootTag, props) {}
+setChildren:function(){function setChildren(containerTag,reactTags){}return setChildren;}(),
 
-    return createView;
-  }(),
-  updateView: function () {
-    function updateView(reactTag, viewName, props) {}
 
-    return updateView;
-  }(),
-  focus: function () {
-    function focus(reactTag) {}
+manageChildren:function(){function manageChildren(
+containerReactTag,
+moveFromIndices,
+moveToIndices,
+addChildReactTags,
+addAtIndices,
+removeAtIndices)
+{}return manageChildren;}(),
 
-    return focus;
-  }(),
-  blur: function () {
-    function blur(reactTag) {}
 
-    return blur;
-  }(),
-  findSubviewIn: function () {
-    function findSubviewIn(reactTag, atPoint, callback) {}
+createView:function(){function createView(reactTag,viewName,rootTag,props){}return createView;}(),
 
-    return findSubviewIn;
-  }(),
-  dispatchViewManagerCommand: function () {
-    function dispatchViewManagerCommand(reactTag, commandID, commandArgs) {}
 
-    return dispatchViewManagerCommand;
-  }(),
-  measure: function () {
-    function measure(reactTag, callback) {}
+updateView:function(){function updateView(reactTag,viewName,props){}return updateView;}(),
 
-    return measure;
-  }(),
-  measureLayout: function () {
-    function measureLayout(reactTag, relativeTo, errorCallback, callback) {}
 
-    return measureLayout;
-  }(),
-  measureLayoutRelativeToParent: function () {
-    function measureLayoutRelativeToParent(reactTag, errorCallback, callback) {}
+focus:function(){function focus(reactTag){}return focus;}(),
 
-    return measureLayoutRelativeToParent;
-  }(),
-  measureViewsInRect: function () {
-    function measureViewsInRect(rect, parentView, errorCallback, callback) {}
 
-    return measureViewsInRect;
-  }(),
-  setJSResponder: function () {
-    function setJSResponder(reactTag, blockNativeResponder) {}
+blur:function(){function blur(reactTag){}return blur;}(),
 
-    return setJSResponder;
-  }(),
-  clearJSResponder: function () {
-    function clearJSResponder() {}
 
-    return clearJSResponder;
-  }(),
-  configureNextLayoutAnimation: function () {
-    function configureNextLayoutAnimation(callback, errorCallback) {}
+findSubviewIn:function(){function findSubviewIn(reactTag,atPoint,callback){}return findSubviewIn;}(),
 
-    return configureNextLayoutAnimation;
-  }()
-};
 
-module.exports = UIManager;
+dispatchViewManagerCommand:function(){function dispatchViewManagerCommand(reactTag,commandID,commandArgs){}return dispatchViewManagerCommand;}(),
+
+
+measure:function(){function measure(reactTag,callback){}return measure;}(),
+
+
+measureLayout:function(){function measureLayout(reactTag,relativeTo,errorCallback,callback){}return measureLayout;}(),
+
+
+measureLayoutRelativeToParent:function(){function measureLayoutRelativeToParent(reactTag,errorCallback,callback){}return measureLayoutRelativeToParent;}(),
+
+
+measureViewsInRect:function(){function measureViewsInRect(rect,parentView,errorCallback,callback){}return measureViewsInRect;}(),
+
+
+setJSResponder:function(){function setJSResponder(reactTag,blockNativeResponder){}return setJSResponder;}(),
+
+
+clearJSResponder:function(){function clearJSResponder(){}return clearJSResponder;}(),
+
+
+configureNextLayoutAnimation:function(){function configureNextLayoutAnimation(callback,errorCallback){}return configureNextLayoutAnimation;}()};
+
+
+
+
+module.exports=UIManager;

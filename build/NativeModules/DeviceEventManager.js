@@ -1,11 +1,7 @@
-"use strict";
+var DeviceEventManager={
+invokeDefaultBackPressHandler:function(){function invokeDefaultBackPressHandler(){}return invokeDefaultBackPressHandler;}()};
 
-var DeviceEventManager = {
-  invokeDefaultBackPressHandler: function () {
-    function invokeDefaultBackPressHandler() {}
 
-    return invokeDefaultBackPressHandler;
-  }()
-};
 
-module.exports = DeviceEventManager;
+
+module.exports=DeviceEventManager;

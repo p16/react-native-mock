@@ -1,52 +1,24 @@
-'use strict';
+var _NativeAppEventEmitter=require('../plugins/NativeAppEventEmitter');var _NativeAppEventEmitter2=_interopRequireDefault(_NativeAppEventEmitter);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{'default':obj};}
 
-var _NativeAppEventEmitter = require('../plugins/NativeAppEventEmitter');
+var TestModule={
+verifySnapshot:function(){function verifySnapshot(callback){
+Promise.resolve().then(function(){return callback(true);});}return verifySnapshot;}(),
 
-var _NativeAppEventEmitter2 = _interopRequireDefault(_NativeAppEventEmitter);
+sendAppEvent:function(){function sendAppEvent(name,body){
+_NativeAppEventEmitter2['default'].emit(name,body);}return sendAppEvent;}(),
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+shouldResolve:function(){function shouldResolve(){
+return Promise.resolve(1);}return shouldResolve;}(),
 
-var TestModule = {
-  verifySnapshot: function () {
-    function verifySnapshot(callback) {
-      Promise.resolve().then(function () {
-        return callback(true);
-      });
-    }
+shouldReject:function(){function shouldReject(){
+return Promise.reject(null);}return shouldReject;}(),
 
-    return verifySnapshot;
-  }(),
-  sendAppEvent: function () {
-    function sendAppEvent(name, body) {
-      _NativeAppEventEmitter2['default'].emit(name, body);
-    }
+markTestCompleted:function(){function markTestCompleted(){}return markTestCompleted;}(),
 
-    return sendAppEvent;
-  }(),
-  shouldResolve: function () {
-    function shouldResolve() {
-      return Promise.resolve(1);
-    }
 
-    return shouldResolve;
-  }(),
-  shouldReject: function () {
-    function shouldReject() {
-      return Promise.reject(null);
-    }
+markTestPassed:function(){function markTestPassed(success){}return markTestPassed;}()};
 
-    return shouldReject;
-  }(),
-  markTestCompleted: function () {
-    function markTestCompleted() {}
 
-    return markTestCompleted;
-  }(),
-  markTestPassed: function () {
-    function markTestPassed(success) {}
 
-    return markTestPassed;
-  }()
-};
 
-module.exports = TestModule;
+module.exports=TestModule;

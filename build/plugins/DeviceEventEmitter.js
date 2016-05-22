@@ -1,7 +1,5 @@
-'use strict';
+var EventEmitter=require('events').EventEmitter;
 
-var EventEmitter = require('events').EventEmitter;
+var DeviceEventEmitter=new EventEmitter();
 
-var DeviceEventEmitter = new EventEmitter();
-
-module.exports = DeviceEventEmitter;
+module.exports=DeviceEventEmitter;

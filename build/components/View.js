@@ -1,86 +1,91 @@
-'use strict';
+var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;}; /**
+ * https://github.com/facebook/react-native/blob/master/Libraries/Components/View/View.js
+ */
+var _react=require('react');var _react2=_interopRequireDefault(_react);
+var _StyleSheetPropType=require('../propTypes/StyleSheetPropType');var _StyleSheetPropType2=_interopRequireDefault(_StyleSheetPropType);
+var _ViewStylePropTypes=require('../propTypes/ViewStylePropTypes');var _ViewStylePropTypes2=_interopRequireDefault(_ViewStylePropTypes);
+var _NativeMethodsMixin=require('../mixins/NativeMethodsMixin');var _NativeMethodsMixin2=_interopRequireDefault(_NativeMethodsMixin);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{'default':obj};}
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /**
-                                                                                                                                                                                                                                                                   * https://github.com/facebook/react-native/blob/master/Libraries/Components/View/View.js
-                                                                                                                                                                                                                                                                   */
+var stylePropType=(0,_StyleSheetPropType2['default'])(_ViewStylePropTypes2['default']);var 
+
+PropTypes=_react2['default'].PropTypes;
+
+var AccessibilityTraits=[
+'none',
+'button',
+'link',
+'header',
+'search',
+'image',
+'selected',
+'plays',
+'key',
+'text',
+'summary',
+'disabled',
+'frequentUpdates',
+'startsMedia',
+'adjustable',
+'allowsDirectInteraction',
+'pageTurn'];
 
 
-var _react = require('react');
+var AccessibilityComponentType=[
+'none',
+'button',
+'radiobutton_checked',
+'radiobutton_unchecked'];
 
-var _react2 = _interopRequireDefault(_react);
-
-var _StyleSheetPropType = require('../propTypes/StyleSheetPropType');
-
-var _StyleSheetPropType2 = _interopRequireDefault(_StyleSheetPropType);
-
-var _ViewStylePropTypes = require('../propTypes/ViewStylePropTypes');
-
-var _ViewStylePropTypes2 = _interopRequireDefault(_ViewStylePropTypes);
-
-var _NativeMethodsMixin = require('../mixins/NativeMethodsMixin');
-
-var _NativeMethodsMixin2 = _interopRequireDefault(_NativeMethodsMixin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var stylePropType = (0, _StyleSheetPropType2['default'])(_ViewStylePropTypes2['default']);
-
-var PropTypes = _react2['default'].PropTypes;
-
-
-var AccessibilityTraits = ['none', 'button', 'link', 'header', 'search', 'image', 'selected', 'plays', 'key', 'text', 'summary', 'disabled', 'frequentUpdates', 'startsMedia', 'adjustable', 'allowsDirectInteraction', 'pageTurn'];
-
-var AccessibilityComponentType = ['none', 'button', 'radiobutton_checked', 'radiobutton_unchecked'];
 
 // TODO(lmr):
-var forceTouchAvailable = false;
+var forceTouchAvailable=false;
 
-var statics = {
-  AccessibilityTraits: AccessibilityTraits,
-  AccessibilityComponentType: AccessibilityComponentType,
-  /**
+var statics={
+AccessibilityTraits:AccessibilityTraits,
+AccessibilityComponentType:AccessibilityComponentType,
+/**
    * Is 3D Touch / Force Touch available (i.e. will touch events include `force`)
    * @platform ios
    */
-  forceTouchAvailable: forceTouchAvailable
-};
+forceTouchAvailable:forceTouchAvailable};
 
-var View = _react2['default'].createClass({
-  displayName: 'View',
 
-  mixins: [_NativeMethodsMixin2['default']],
-  statics: _extends({}, statics),
-  propTypes: {
-    /**
+var View=_react2['default'].createClass({displayName:'View',
+propTypes:{
+/**
      * When true, indicates that the view is an accessibility element. By default,
      * all the touchable elements are accessible.
      */
-    accessible: PropTypes.bool,
+accessible:PropTypes.bool,
 
-    /**
+/**
      * Overrides the text that's read by the screen reader when the user interacts
      * with the element. By default, the label is constructed by traversing all the
      * children and accumulating all the Text nodes separated by space.
      */
-    accessibilityLabel: PropTypes.string,
+accessibilityLabel:PropTypes.string,
 
-    /**
+/**
      * Indicates to accessibility services to treat UI component like a
      * native one. Works for Android only.
      * @platform android
      */
-    accessibilityComponentType: PropTypes.oneOf(AccessibilityComponentType),
+accessibilityComponentType:PropTypes.oneOf(AccessibilityComponentType),
 
-    /**
+/**
      * Indicates to accessibility services whether the user should be notified
      * when this view changes. Works for Android API >= 19 only.
      * See http://developer.android.com/reference/android/view/View.html#attr_android:accessibilityLiveRegion
      * for references.
      * @platform android
      */
-    accessibilityLiveRegion: PropTypes.oneOf(['none', 'polite', 'assertive']),
+accessibilityLiveRegion:PropTypes.oneOf([
+'none',
+'polite',
+'assertive']),
 
-    /**
+
+/**
      * Controls how view is important for accessibility which is if it
      * fires accessibility events and if it is reported to accessibility services
      * that query the screen. Works for Android only.
@@ -96,50 +101,58 @@ var View = _react2['default'].createClass({
      *
      * @platform android
      */
-    importantForAccessibility: PropTypes.oneOf(['auto', 'yes', 'no', 'no-hide-descendants']),
+importantForAccessibility:PropTypes.oneOf([
+'auto',
+'yes',
+'no',
+'no-hide-descendants']),
 
-    /**
+
+/**
      * Provides additional traits to screen reader. By default no traits are
      * provided unless specified otherwise in element
      * @platform ios
      */
-    accessibilityTraits: PropTypes.oneOfType([PropTypes.oneOf(AccessibilityTraits), PropTypes.arrayOf(PropTypes.oneOf(AccessibilityTraits))]),
+accessibilityTraits:PropTypes.oneOfType([
+PropTypes.oneOf(AccessibilityTraits),
+PropTypes.arrayOf(PropTypes.oneOf(AccessibilityTraits))]),
 
-    /**
+
+/**
      * When `accessible` is true, the system will try to invoke this function
      * when the user performs accessibility tap gesture.
      */
-    onAccessibilityTap: PropTypes.func,
+onAccessibilityTap:PropTypes.func,
 
-    /**
+/**
      * When `accessible` is true, the system will invoke this function when the
      * user performs the magic tap gesture.
      */
-    onMagicTap: PropTypes.func,
+onMagicTap:PropTypes.func,
 
-    /**
+/**
      * Used to locate this view in end-to-end tests. NB: disables the 'layout-only
      * view removal' optimization for this view!
      */
-    testID: PropTypes.string,
+testID:PropTypes.string,
 
-    /**
+/**
      * For most touch interactions, you'll simply want to wrap your component in
      * `TouchableHighlight` or `TouchableOpacity`. Check out `Touchable.js`,
      * `ScrollResponder.js` and `ResponderEventPlugin.js` for more discussion.
      */
-    onResponderGrant: PropTypes.func,
-    onResponderMove: PropTypes.func,
-    onResponderReject: PropTypes.func,
-    onResponderRelease: PropTypes.func,
-    onResponderTerminate: PropTypes.func,
-    onResponderTerminationRequest: PropTypes.func,
-    onStartShouldSetResponder: PropTypes.func,
-    onStartShouldSetResponderCapture: PropTypes.func,
-    onMoveShouldSetResponder: PropTypes.func,
-    onMoveShouldSetResponderCapture: PropTypes.func,
+onResponderGrant:PropTypes.func,
+onResponderMove:PropTypes.func,
+onResponderReject:PropTypes.func,
+onResponderRelease:PropTypes.func,
+onResponderTerminate:PropTypes.func,
+onResponderTerminationRequest:PropTypes.func,
+onStartShouldSetResponder:PropTypes.func,
+onStartShouldSetResponderCapture:PropTypes.func,
+onMoveShouldSetResponder:PropTypes.func,
+onMoveShouldSetResponderCapture:PropTypes.func,
 
-    /**
+/**
      * Invoked on mount and layout changes with
      *
      *   {nativeEvent: { layout: {x, y, width, height}}}.
@@ -148,9 +161,9 @@ var View = _react2['default'].createClass({
      * the new layout may not yet be reflected on the screen at the time the
      * event is received, especially if a layout animation is in progress.
      */
-    onLayout: PropTypes.func,
+onLayout:PropTypes.func,
 
-    /**
+/**
      * In the absence of `auto` property, `none` is much like `CSS`'s `none`
      * value. `box-none` is as if you had applied the `CSS` class:
      *
@@ -180,10 +193,15 @@ var View = _react2['default'].createClass({
      * implement it as a `className` anyways. Using `style` or not is an
      * implementation detail of the platform.
      */
-    pointerEvents: PropTypes.oneOf(['box-none', 'none', 'box-only', 'auto']),
-    style: stylePropType,
+pointerEvents:PropTypes.oneOf([
+'box-none',
+'none',
+'box-only',
+'auto']),
 
-    /**
+style:stylePropType,
+
+/**
      * This is a special performance property exposed by RCTView and is useful
      * for scrolling content when there are many subviews, most of which are
      * offscreen. For this property to be effective, it must be applied to a
@@ -191,9 +209,9 @@ var View = _react2['default'].createClass({
      * subviews must also have overflow: hidden, as should the containing view
      * (or one of its superviews).
      */
-    removeClippedSubviews: PropTypes.bool,
+removeClippedSubviews:PropTypes.bool,
 
-    /**
+/**
      * Whether this view should render itself (and all of its children) into a
      * single hardware texture on the GPU.
      *
@@ -206,9 +224,9 @@ var View = _react2['default'].createClass({
      * interaction/animation.
      * @platform android
      */
-    renderToHardwareTextureAndroid: PropTypes.bool,
+renderToHardwareTextureAndroid:PropTypes.bool,
 
-    /**
+/**
      * Whether this view should be rendered as a bitmap before compositing.
      *
      * On iOS, this is useful for animations and interactions that do not
@@ -221,18 +239,18 @@ var View = _react2['default'].createClass({
      * memory. Test and measure when using this property.
      * @platform ios
      */
-    shouldRasterizeIOS: PropTypes.bool,
+shouldRasterizeIOS:PropTypes.bool,
 
-    /**
+/**
      * Views that are only used to layout their children or otherwise don't draw
      * anything may be automatically removed from the native hierarchy as an
      * optimization. Set this property to `false` to disable this optimization and
      * ensure that this View exists in the native view hierarchy.
      * @platform android
      */
-    collapsable: PropTypes.bool,
+collapsable:PropTypes.bool,
 
-    /**
+/**
      * Whether this view needs to rendered offscreen and composited with an alpha
      * in order to preserve 100% correct colors and blending behavior. The default
      * (false) falls back to drawing the component and its children with an alpha
@@ -253,15 +271,18 @@ var View = _react2['default'].createClass({
      *
      * @platform android
      */
-    needsOffscreenAlphaCompositing: PropTypes.bool
-  },
-  render: function () {
-    function render() {
-      return null;
-    }
+needsOffscreenAlphaCompositing:PropTypes.bool},
 
-    return render;
-  }()
-});
 
-module.exports = View;
+mixins:[_NativeMethodsMixin2['default']],
+
+statics:_extends({},
+statics),
+
+
+render:function(){function render(){
+return null;}return render;}()});
+
+
+
+module.exports=View;

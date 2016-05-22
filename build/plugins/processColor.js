@@ -1,8 +1,6 @@
-"use strict";
+function processColor(){
+// TODO(lmr): seems like a good example of something we should pull directly from RN.
+return 0;}
 
-function processColor() {
-  // TODO(lmr): seems like a good example of something we should pull directly from RN.
-  return 0;
-}
 
-module.exports = processColor;
+module.exports=processColor;

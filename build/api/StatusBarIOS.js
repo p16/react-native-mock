@@ -1,52 +1,32 @@
-"use strict";
+var _style={};
+var _hidden=false;
+var _networkActivityIndicatorVisible=true;
 
-var _style = {};
-var _hidden = false;
-var _networkActivityIndicatorVisible = true;
+var StatusBarIOS={
 
-var StatusBarIOS = {
-  setStyle: function () {
-    function setStyle(style, animated) {
-      _style = style;
-    }
+setStyle:function(){function setStyle(style,animated){
+_style=style;}return setStyle;}(),
 
-    return setStyle;
-  }(),
-  setHidden: function () {
-    function setHidden(hidden, animation) {
-      _hidden = hidden;
-    }
 
-    return setHidden;
-  }(),
-  setNetworkActivityIndicatorVisible: function () {
-    function setNetworkActivityIndicatorVisible(visible) {
-      _networkActivityIndicatorVisible = visible;
-    }
+setHidden:function(){function setHidden(hidden,animation){
+_hidden=hidden;}return setHidden;}(),
 
-    return setNetworkActivityIndicatorVisible;
-  }(),
-  __getStyle: function () {
-    function __getStyle() {
-      return _style;
-    }
 
-    return __getStyle;
-  }(),
-  __getHidden: function () {
-    function __getHidden() {
-      return _hidden;
-    }
+setNetworkActivityIndicatorVisible:function(){function setNetworkActivityIndicatorVisible(visible){
+_networkActivityIndicatorVisible=visible;}return setNetworkActivityIndicatorVisible;}(),
 
-    return __getHidden;
-  }(),
-  __getNetworkActivityIndicatorVisible: function () {
-    function __getNetworkActivityIndicatorVisible() {
-      return _networkActivityIndicatorVisible;
-    }
 
-    return __getNetworkActivityIndicatorVisible;
-  }()
-};
+__getStyle:function(){function __getStyle(){
+return _style;}return __getStyle;}(),
 
-module.exports = StatusBarIOS;
+
+__getHidden:function(){function __getHidden(){
+return _hidden;}return __getHidden;}(),
+
+
+__getNetworkActivityIndicatorVisible:function(){function __getNetworkActivityIndicatorVisible(){
+return _networkActivityIndicatorVisible;}return __getNetworkActivityIndicatorVisible;}()};
+
+
+
+module.exports=StatusBarIOS;

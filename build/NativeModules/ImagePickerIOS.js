@@ -1,37 +1,19 @@
-"use strict";
+var _canRecordVideos=true;
+var _canUseCamera=true;
 
-var _canRecordVideos = true;
-var _canUseCamera = true;
+var ImagePickerIOS={
+canRecordVideos:function(){function canRecordVideos(callback){
+Promise.resolve(_canRecordVideos).then(callback);}return canRecordVideos;}(),
 
-var ImagePickerIOS = {
-  canRecordVideos: function () {
-    function canRecordVideos(callback) {
-      Promise.resolve(_canRecordVideos).then(callback);
-    }
+canUseCamera:function(){function canUseCamera(callback){
+Promise.resolve(_canUseCamera).then(callback);}return canUseCamera;}(),
 
-    return canRecordVideos;
-  }(),
-  canUseCamera: function () {
-    function canUseCamera(callback) {
-      Promise.resolve(_canUseCamera).then(callback);
-    }
+openCameraDialog:function(){function openCameraDialog(config,success,cancel){
+// TODO(lmr):
+}return openCameraDialog;}(),
+openSelectDialog:function(){function openSelectDialog(config,success,cancel){
+// TODO(lmr):
+}return openSelectDialog;}()};
 
-    return canUseCamera;
-  }(),
-  openCameraDialog: function () {
-    function openCameraDialog(config, success, cancel) {
-      // TODO(lmr):
-    }
 
-    return openCameraDialog;
-  }(),
-  openSelectDialog: function () {
-    function openSelectDialog(config, success, cancel) {
-      // TODO(lmr):
-    }
-
-    return openSelectDialog;
-  }()
-};
-
-module.exports = ImagePickerIOS;
+module.exports=ImagePickerIOS;

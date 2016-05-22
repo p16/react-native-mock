@@ -1,3 +1,4 @@
-'use strict';
-
-module.exports = ['contain', 'cover', 'stretch'];
+module.exports=[
+'contain',
+'cover',
+'stretch'];

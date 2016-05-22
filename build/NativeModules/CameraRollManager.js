@@ -1,22 +1,13 @@
-'use strict';
+var 
+CameraRollManager={
+saveImageWithTag:function(){function saveImageWithTag(imageTag){
+return Promise.resolve(['/asset/url']);}return saveImageWithTag;}(),
 
-var CameraRollManager = {
-  saveImageWithTag: function () {
-    function saveImageWithTag(imageTag) {
-      return Promise.resolve(['/asset/url']);
-    }
+getPhotos:function(){function getPhotos(params){
+return Promise.resolve([
+// TODO(lmr):
+]);}return getPhotos;}()};
 
-    return saveImageWithTag;
-  }(),
-  getPhotos: function () {
-    function getPhotos(params) {
-      return Promise.resolve([
-        // TODO(lmr):
-      ]);
-    }
 
-    return getPhotos;
-  }()
-};
 
-module.exports = CameraRollManager;
+module.exports=CameraRollManager;

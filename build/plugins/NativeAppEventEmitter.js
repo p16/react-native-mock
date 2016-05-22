@@ -1,7 +1,5 @@
-'use strict';
+var EventEmitter=require('events').EventEmitter;
 
-var EventEmitter = require('events').EventEmitter;
+var NativeAppEventEmitter=new EventEmitter();
 
-var NativeAppEventEmitter = new EventEmitter();
-
-module.exports = NativeAppEventEmitter;
+module.exports=NativeAppEventEmitter;
